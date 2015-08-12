@@ -107,7 +107,10 @@ let KeysWidget = React.createClass({
 
     return (
       <div>
-        <h2>Your Key</h2>
+      <h2>Your Tools</h2>
+      <div className="row">
+        <div className="six columns">
+        <h3>Your Key</h3>
         <p>Your key is used to decrypt messages secured by your padlock. Keep it secret; keep it safe!</p>
         {this.state.showPrivateKey ? (
           <p>
@@ -119,7 +122,9 @@ let KeysWidget = React.createClass({
         ) : (
           <button onClick={this.handleShowKeyClick}>Show Key&hellip;</button>
         )}
-        <h2>Your Padlock</h2>
+        </div>
+        <div className="six columns">
+        <h3>Your Padlock</h3>
         <p>The code below is like a padlock that only your key can open. Copy and share it freely with others: tweet it, SMS it, put it on a USB stick!</p>
         <p>
           <span className="emoji">
@@ -127,6 +132,8 @@ let KeysWidget = React.createClass({
             {emoji.fromHex(keypair.publicKey, emoji.PUBLIC_EMOJIS)}
           </span>
         </p>
+        </div>
+      </div>
       </div>
     );
   }
