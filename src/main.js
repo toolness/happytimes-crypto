@@ -20,21 +20,16 @@ let EncryptWidget = React.createClass({
   },
   handleEncryptChange() {
     let padlock = this.refs.recipientPadlock.getDOMNode().value;
-    let message = this.refs.messageToEncrypt.getDOMNode().value;
+    let cipherText = this.refs.messageToEncrypt.getDOMNode().value;
     let encryptedMessage = '';
-    let nonce = sodium.randombytes_buf(sodium.crypto_box_NONCEBYTES);
 
     padlock = emoji.toHex(padlock, emoji.PUBLIC_EMOJIS);
-    if (padlock && message) {
-      let result = sodium.to_hex(sodium.crypto_box_easy(
-        message,
-        nonce,
-        sodium.from_hex(padlock),
-        sodium.from_hex(this.props.keypair.privateKey)
+    if (padlock && cipherText) {
+      let result = sodium.to_hex(sodium.crypto_box_seal(
+        cipherText,
+        sodium.from_hex(padlock)
       ));
-      encryptedMessage = emoji.fromHex(sodium.to_hex(
-        nonce
-      ), emoji.NONCE_EMOJIS) + emoji.fromHex(result, emoji.PUBLIC_EMOJIS);
+      encryptedMessage = emoji.fromHex(result, emoji.PUBLIC_EMOJIS);
     }
     this.setState({
       encryptedMessage: encryptedMessage
@@ -52,7 +47,7 @@ let EncryptWidget = React.createClass({
         {this.state.encryptedMessage ? (
           <div>
             <h3>Encrypted Message</h3>
-            <p className="emoji">{this.state.encryptedMessage}</p>
+            <p className="emoji">{emoji.ENVELOPE_EMOJI} {this.state.encryptedMessage}</p>
           </div>
         ) : null}
       </div>
@@ -78,9 +73,13 @@ let DecryptWidget = React.createClass({
       emoji.PUBLIC_EMOJIS
     );
 
-    decryptedMessage = sodium.crypto_box_open_easy(
-      sodium.from_hex(cipherText), sodium.from_hex(nonce)
-    );
+    if (cipherText) {
+      decryptedMessage = sodium.to_string(sodium.crypto_box_seal_open(
+        sodium.from_hex(cipherText),
+        sodium.from_hex(this.props.keypair.publicKey),
+        sodium.from_hex(this.props.keypair.privateKey)
+      ));
+    }
 
     this.setState({
       decryptedMessage: decryptedMessage
@@ -126,7 +125,7 @@ let App = React.createClass({
             {emoji.fromHex(keypair.publicKey, emoji.PUBLIC_EMOJIS)}
           </span>
         </p>
-        <EncryptWidget keypair={keypair}/>
+        <EncryptWidget/>
         <DecryptWidget keypair={keypair}/>
       </div>
     );

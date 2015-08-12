@@ -1,5 +1,6 @@
 export let KEY_EMOJI = '\u{1f511}';
 export let LOCK_EMOJI = '\u{1f512}';
+export let ENVELOPE_EMOJI = '\u2709';
 
 export let HEX_MAP = '0123456789abcdef';
 
