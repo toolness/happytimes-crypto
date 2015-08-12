@@ -28,10 +28,10 @@ let EncryptWidget = React.createClass({
       <div>
         <h2>Encrypt a Message</h2>
         <p>To send an encrypted message, you'll need a copy of the recipient's padlock.</p>
-        <h3>Recipient's Padlock</h3>
-        <textarea ref="recipientPadlock" className="emoji" onChange={this.handleEncryptChange}></textarea>
-        <h3>Message</h3>
-        <textarea ref="messageToEncrypt" className="emoji" onChange={this.handleEncryptChange}></textarea>
+        <label htmlFor="recipientPadlock">Recipient's Padlock</label>
+        <textarea id="recipientPadlock" ref="recipientPadlock" className="u-full-width emoji" onChange={this.handleEncryptChange}></textarea>
+        <label htmlFor="messageToEncrypt">Message</label>
+        <textarea id="messageToEncrypt" ref="messageToEncrypt" className="u-full-width emoji" onChange={this.handleEncryptChange}></textarea>
         {this.state.encryptedMessage ? (
           <div>
             <h3>Encrypted Message</h3>
@@ -78,8 +78,8 @@ let DecryptWidget = React.createClass({
       <div>
         <h2>Decrypt a Message</h2>
         <p>You can only decrypt messages that were encrypted with your padlock.</p>
-        <h3>Encrypted Message</h3>
-        <textarea ref="messageToDecrypt" className="emoji" onChange={this.handleDecryptChange}></textarea>
+        <label htmlFor="messageToDecrypt">Encrypted Message</label>
+        <textarea id="messageToDecrypt" ref="messageToDecrypt" className="u-full-width emoji" onChange={this.handleDecryptChange}></textarea>
         {this.state.decryptedMessage ? (
           <div>
             <h3>Decrypted Message</h3>

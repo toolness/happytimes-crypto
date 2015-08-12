@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,300,600">
+<link rel="stylesheet" href="vendor/skeleton/normalize.css">
+<link rel="stylesheet" href="vendor/skeleton/skeleton.css">
 <style>
 @font-face {
   font-family: 'OpenSansEmoji';
@@ -12,18 +15,17 @@ html.no-emoji .emoji {
 }
 
 html .emoji {
-  font-size: 2rem;
+  font-size: 3rem;
   word-wrap: break-word;
 }
 
 textarea {
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
   min-height: 5em;
 }
 </style>
 <title>Sodium Fun</title>
+<div class="container">
+<h1>Happytimes Crypto</h1>
 <div id="app">
   <!-- http://commons.wikimedia.org/wiki/File:Chromiumthrobber.svg -->
   <svg width="16" height="16" viewBox="0 0 300 300"
@@ -38,6 +40,7 @@ textarea {
              begin="0s" dur="1s" fill="freeze" repeatCount="indefinite" />
     </path>
   </svg> Loading&hellip;
+</div>
 </div>
 <script src="vendor/modernizr.custom.58021.js"></script>
 <script src="vendor/babel/browser-polyfill.js"></script>
