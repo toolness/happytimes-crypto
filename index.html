@@ -12,8 +12,11 @@
   src: url(vendor/OpenSansEmoji.ttf) format('truetype');
 }
 
-.emoji {
+html.no-emoji .emoji {
   font-family: 'OpenSansEmoji';
+}
+
+.emoji {
   font-size: 2rem;
   word-wrap: break-word;
 }
@@ -41,6 +44,7 @@ textarea {
     </path>
   </svg> Loading&hellip;
 </div>
+<script src="vendor/modernizr.custom.58021.js"></script>
 <script src="vendor/babel/browser-polyfill.js"></script>
 <script src="vendor/babel/browser.js"></script>
 <script src="vendor/react-with-addons.js"></script>
