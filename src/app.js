@@ -108,7 +108,7 @@ let KeysWidget = React.createClass({
     return (
       <div>
         <h2>Your Key</h2>
-        <p>The code below is yours alone. Keep it secret; keep it safe!</p>
+        <p>Your key is used to decrypt messages secured by your padlock. Keep it secret; keep it safe!</p>
         {this.state.showPrivateKey ? (
           <p>
             <span className="emoji">
