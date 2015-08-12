@@ -91,7 +91,17 @@ let DecryptWidget = React.createClass({
   }
 });
 
-export default React.createClass({
+let KeysWidget = React.createClass({
+  getInitialState() {
+    return {
+      showPrivateKey: false
+    };
+  },
+  handleShowKeyClick() {
+    this.setState({
+      showPrivateKey: true
+    });
+  },
   render() {
     let keypair = this.props.keypair;
 
@@ -99,12 +109,16 @@ export default React.createClass({
       <div>
         <h2>Your Key</h2>
         <p>The code below is yours alone. Keep it secret; keep it safe!</p>
-        <p>
-          <span className="emoji">
-            {emoji.KEY_EMOJI}
-            {emoji.fromHex(keypair.privateKey, emoji.SECRET_EMOJIS)}
-          </span>
-        </p>
+        {this.state.showPrivateKey ? (
+          <p>
+            <span className="emoji">
+              {emoji.KEY_EMOJI}
+              {emoji.fromHex(keypair.privateKey, emoji.SECRET_EMOJIS)}
+            </span>
+          </p>
+        ) : (
+          <button onClick={this.handleShowKeyClick}>Show Key&hellip;</button>
+        )}
         <h2>Your Padlock</h2>
         <p>The code below is like a padlock that only your key can open. Copy and share it freely with others: tweet it, SMS it, put it on a USB stick!</p>
         <p>
@@ -113,6 +127,18 @@ export default React.createClass({
             {emoji.fromHex(keypair.publicKey, emoji.PUBLIC_EMOJIS)}
           </span>
         </p>
+      </div>
+    );
+  }
+});
+
+export default React.createClass({
+  render() {
+    let keypair = this.props.keypair;
+
+    return (
+      <div>
+        <KeysWidget keypair={keypair}/>
         <EncryptWidget/>
         <DecryptWidget keypair={keypair}/>
       </div>
