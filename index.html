@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@font-face {
+  font-family: 'EmojiSymbols';
+  src: url(vendor/EmojiSymbols-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'OpenSansEmoji';
+  src: url(vendor/OpenSansEmoji.ttf) format('truetype');
+}
+
+.emoji {
+  font-family: 'OpenSansEmoji';
+  font-size: 2rem;
+}
+
+textarea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 5em;
+}
+</style>
+<title>Sodium Fun</title>
+<div id="app">
+  <!-- http://commons.wikimedia.org/wiki/File:Chromiumthrobber.svg -->
+  <svg width="16" height="16" viewBox="0 0 300 300"
+     xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 150,0
+             a 150,150 0 0,1 106.066,256.066
+             l -35.355,-35.355
+             a -100,-100 0 0,0 -70.711,-170.711 z"
+          fill="black">
+      <animateTransform attributeName="transform" attributeType="XML"
+             type="rotate" from="0 150 150" to="360 150 150"
+             begin="0s" dur="1s" fill="freeze" repeatCount="indefinite" />
+    </path>
+  </svg> Loading&hellip;
+</div>
+<script src="vendor/babel/browser-polyfill.js"></script>
+<script src="vendor/babel/browser.js"></script>
+<script src="vendor/react-with-addons.js"></script>
+<script src="vendor/png-baker.js"></script>
+<script src="vendor/sodium.js"></script>
+<script src="mini-loader.js" data-root="src/"></script>
