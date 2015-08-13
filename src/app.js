@@ -30,17 +30,17 @@ let EncryptWidget = React.createClass({
         <p>To send an encrypted message, you'll need a copy of the recipient's padlock.</p>
         <div className="row">
           <div className="six columns">
-            <label htmlFor="recipientPadlock">Recipient's Padlock</label>
+            <label htmlFor="recipientPadlock"><i className="privicon privicon-locked"></i> Recipient's Padlock</label>
             <textarea id="recipientPadlock" ref="recipientPadlock" className="u-full-width emoji" onChange={this.handleEncryptChange}></textarea>
           </div>
           <div className="six columns">
-            <label htmlFor="messageToEncrypt">Message</label>
+            <label htmlFor="messageToEncrypt"><i className="privicon privicon-mail"></i> Message</label>
             <textarea id="messageToEncrypt" ref="messageToEncrypt" className="u-full-width emoji" onChange={this.handleEncryptChange}></textarea>
           </div>
         </div>
         {this.state.encryptedMessage ? (
           <div>
-            <h3>Encrypted Message</h3>
+            <label><i className="privicon privicon-mail"></i><i className="privicon privicon-locked"></i> Encrypted Message</label>
             <p className="emoji">{emoji.ENVELOPE_EMOJI} {this.state.encryptedMessage}</p>
           </div>
         ) : null}
@@ -84,12 +84,12 @@ let DecryptWidget = React.createClass({
       <div>
         <h2>Decrypt a Message</h2>
         <p>You can only decrypt messages that were encrypted with your padlock.</p>
-        <label htmlFor="messageToDecrypt">Encrypted Message</label>
+        <label htmlFor="messageToDecrypt"><i className="privicon privicon-mail"></i><i className="privicon privicon-locked"></i> Encrypted Message</label>
         <textarea id="messageToDecrypt" ref="messageToDecrypt" className="u-full-width emoji" onChange={this.handleDecryptChange}></textarea>
         {this.state.decryptedMessage ? (
           <div>
-            <h3>Decrypted Message</h3>
-            <p className="emoji">{this.state.decryptedMessage}</p>            
+            <label><i className="privicon privicon-mail"></i> Decrypted Message</label>
+            <p className="emoji">{this.state.decryptedMessage}</p>
           </div>
         ) : null}
       </div>
@@ -116,7 +116,7 @@ let KeysWidget = React.createClass({
       <h2>Your Tools</h2>
       <div className="row">
         <div className="six columns">
-        <h3>Your Key</h3>
+        <h3><i className="privicon privicon-fancy-key"></i> Your Key</h3>
         <p>Your key is used to decrypt messages secured by your padlock. Keep it secret; keep it safe!</p>
         {this.state.showPrivateKey ? (
           <p>
@@ -130,7 +130,7 @@ let KeysWidget = React.createClass({
         )}
         </div>
         <div className="six columns">
-        <h3>Your Padlock</h3>
+        <h3><i className="privicon privicon-locked"></i> Your Padlock</h3>
         <p>The code below is like a padlock that only your key can open. Copy and share it freely with others: tweet it, SMS it, put it on a USB stick!</p>
         <p>
           <span className="emoji">
